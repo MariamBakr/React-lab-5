@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+
+import MovieDetails from './Components/Movie-Details';
+import WishList from './Components/WishList'
+import Movies from './Components/Movies';
+import NavBar from './Components/NavBar';
+import Login from './Components/Login';
+import AboutUs from './Components/About-Us';
+import {Provider} from 'react-redux';
+import {store} from './Redux/Store'
 
 function App() {
   return (
+    <Provider store={store} >
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar/>
+      <Routes>
+        <Route path='/AllMovies' element={<Movies/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/aboutus' element={<AboutUs/>}/>
+        <Route path='/movies' element={<Movies/>}/>
+        <Route path='/movies/:id' element={<MovieDetails/>}/>
+        <Route path='/wishlist' element={<WishList/>} />
+        
+
+      </Routes>
     </div>
+    </Provider>
   );
 }
 
